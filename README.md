@@ -4,10 +4,13 @@
 It utilizes multiple optimizations techniques, including most of the ones detailed in [these](http://www.nayuki.io/page/optimizing-brainfuck-compiler) [two](http://calmerthanyouare.org/2015/01/07/optimizing-brainfuck.html) articles.
 The compiler produces dependency-free (apart from mscorlib), PEVerify-able .NET assemblies, which can be run on .NET and Mono.
 
-The compiler is written in [F#](https://en.wikipedia.org/wiki/F_Sharp_%28programming_language%29) 4.0, and it has no external dependencies.
+The compiler is written in [F#](https://en.wikipedia.org/wiki/F_Sharp_%28programming_language%29) 4.0, and it has no third-party dependencies.
 However, it utilizes System.Reflection.Emit for bytecode generation, which is not currently (2015-06-06) available on .NET Core.
 It's split into two modules: **bfcfs**, the compiler, and **bfc**, the command line interface.
 bfcfs has a public API, and it can be used separately.
+
+The implemented version of Brainfuck is fairly standard. The parser ignores all non-command characters, but it also  supports the use of a semicolon as a comment marker; all of the characters between a ; and the next newline are ignored.
+The size of the data array is fixed, but configurable at compile time (30,000 by default). The cells are 8-bit unsigned integers.
 
 ## --help
 
